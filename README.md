@@ -1,25 +1,6 @@
-# The Proper Arras.io Private Server Template
+# The Server is here!
 
-## This Template is still in progress, but here is is so far..
-
-## Quick Start Guide
-
-1. Click the top right where it says **Remix to Edit :microphone:**
-2. Give your new project a name.
-3. Your private server name will be at <http://arras.io/#private=arras-template3.glitch.me> (replace `arras-template3` with it's new name)
-4. You add a gamemode code in the link to specify its gamemode (see below).
-
-## More Information
-
-1. Open the file at the left named `🔑 .env`
-2. Fill it in with
-```
-SECRET=aSecretPasswordHere
-```
-3. Open the private server with <http://arras.io/#private=arras-template3.glitch.me;aSecretPasswordHere> (replace `aSecretPasswordHere` with the password)
-4. The map/config data are in the `config.js` file
-5. The tank data are in the `lib/definitions.js` file
-6. Other stuff (score curve, stat amount) are in the `server.js` file
+## obviously not done, but we can make it a decent server
 
 ## Gamemode Code
 
@@ -43,7 +24,3 @@ Note:
 ## Gamemode Code and Secret Password Combined
 For those who want to have a gamemode code and the secret password combined, there is a way to do that...
 Open the private server with <http://arras.io/#private=arras-template3.glitch.me;aSecretPasswordHere&mode=f> (replace aSecretPasswordHere with the password, and f as the gamemode code) 
-
-## Breaking Changes
-
-Breaking changes are important updates to the template that you should do on your server, as otherwise it may stop functioning. The last breaking change is on April 10th, 2019. If you've made a private server before that day, it may no longer work without this update. See `CHANGELOG.md` for details.
