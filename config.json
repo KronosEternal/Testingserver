@@ -13,8 +13,8 @@
   "verbose": true,
   "WIDTH": 1500,
   "HEIGHT": 1500,
-  "MODE": "tdm",
-  "RANDOM_COLORS": false,
+  "MODE": "ffa",
+  "RANDOM_COLORS": true,
   "BANNED_CHARACTER_REGEX": "/[\uFDFD\u200E\u0000]/gi", 
   "ROOM_SETUP": [ 
     [ "norm", "norm", "norm", "norm", "norm", "norm", "norm", "norm", "norm", "norm"],

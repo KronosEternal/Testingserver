@@ -24,3 +24,5 @@ Note:
 ## Gamemode Code and Secret Password Combined
 For those who want to have a gamemode code and the secret password combined, there is a way to do that...
 Open the private server with <http://arras.io/#private=arras-template3.glitch.me;aSecretPasswordHere&mode=f> (replace aSecretPasswordHere with the password, and f as the gamemode code) 
+
+# The Thing

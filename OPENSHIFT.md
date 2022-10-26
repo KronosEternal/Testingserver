@@ -1,4 +1,4 @@
-# THIS TUTORIAL IS NOT YET FINISHED. IT IS ADVISED TO WAIT UNTIL I'VE FINISHED MAKING THIS TUTORIAL.
+# This later if im not lazy
 
 # Switching to OpenShift
 
