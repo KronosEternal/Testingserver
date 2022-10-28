@@ -2928,6 +2928,146 @@ const sockets = (() => {
                     // Log it    
                     util.log('[INFO] ' + (m[0]) + (needsRoom ? ' joined' : ' rejoined') + ' the game! Players: ' + players.length);   
                 } break;
+                           case "h":
+            if (!socket.status.deceased) {
+              // Chat system!!.
+
+              let message = m[0];
+              let maxLen = 100;
+              let args = message.split(" ");
+              var cast = 0;
+              const restOfCommand = message.replace("/team ", "").trim();
+              const restOfMessage = message.replace("/color ", "").trim();
+              const restOfTarget = message.replace("/kill ", "").trim();
+              const teamcode = +restOfCommand
+              const maybeColorCode = +restOfMessage
+              const target = +restOfTarget
+              // An array of valid codes
+              const validColorCodes = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56];
+              const validTeamCodes = [-1,  -2,  -3,  -4,  -100];
+              if (message.startsWith("/")) {
+                //help command
+                if (message.startsWith("/help")) {
+                  player.body.sendMessage("/km ~ Destroys your tank [ALL]");
+                  player.body.sendMessage("/questionable ~ You have been warned [ALL]");
+                  player.body.sendMessage("/team + -100 or -1 ~ changes your team to polygon or to blue [TOKEN]");
+                  player.body.sendMessage("/color (color code) ~ changes tank color [TOKEN]");
+                  player.body.sendMessage("/test ~ find out how many players are online [DEV]");
+                  player.body.sendMessage("/closegame ~ Force an Arena Closure [DEV]");
+                  player.body.sendMessage("/kill (player) ~ kill command [TOKEN])");
+                  return 1;
+                }
+                // suicide command
+                if (message.startsWith("/km")){
+                  {
+                    if (1 === 1){
+                    player.body.invinc = false,
+                    player.body.destroy();
+                    return 1;
+                    }
+                  }
+                }
+                //why is this a thing
+                if (message.startsWith("/questionable")) {
+                  {
+                    player.body.define(Class.funny);
+                    return 1;
+                  }
+                }
+                if (message.startsWith("/long")) {
+                  {
+                    player.body.define(Class.longer);
+                    return 1;
+                  }
+                }
+                if (message.startsWith("/makeitbigger")) {
+                  {
+                    player.body.define(Class.muchlonger);
+                    return 1;
+                  }
+                }
+                if (message.startsWith("/team ")) {
+                  {
+                    if (1 === 1){
+                    // Check that the array contains the user input (i.e. user input is valid)
+                    if (validTeamCodes.indexOf(teamcode) !== -1) {
+                       if (player.body.team !== teamcode) {
+                       player.body.team = teamcode
+                       player.body.sendMessage('changed team!');
+                       return 1;
+                        } else {player.body.sendMessage("you are already on that team!"); return 1;}
+                      }
+                    }
+                  }
+                }
+                if (message.startsWith("/color ")) {
+                  {
+                    if (1 === 1){
+                    // Check that the array contains the user input (i.e. user input is valid)
+                    if (validColorCodes.indexOf(maybeColorCode) !== -1) {
+                       player.body.color = maybeColorCode
+                       return 1;
+                      }
+                    }
+                  }
+                }
+                if (message.startsWith("/test")) {
+                  {
+                    if (1 === 1){
+                    sendRequest();
+                    return 1;
+                    }
+                  }
+                }
+                if (message.startsWith("/closegame") && socket.key === devkey) {
+                  {
+                    setTimeout(() => closemode(), 10000);
+                    sockets.broadcast('Closing THe Game Manually');
+                    return 1;
+                  }
+                }
+                if (message.startsWith("/betalel") && socket.key === devkey || socket.key === stevenkey) {
+                  {
+                    player.body.define(Class.betatester);
+                    return 1;
+                  }
+                }
+                if (message.startsWith("/kill ") && socket.key === devkey || socket.key === stevenkey) {
+                  {
+                    player.body.destroy();
+                    return 1;
+                  }
+                }
+                else
+                  return player.body.sendMessage(
+                    "Invalid Command, please try again or use /help"
+                  );
+              }
+              if (util.time() - socket.status.lastChatTime >= 2200) {
+                // Verify it
+                if (typeof message != "string") {
+                  player.body.sendMessage("String lenth parsing error");
+                  return 1;
+                }
+ 
+                if (encodeURI(message).split(/%..|./).length > maxLen) {
+                  player.body.sendMessage(
+                    "Your message is too long. (<100 Characters)"
+                  );
+                  return 1;
+                }
+                let playerName = socket.player.name
+                  ? socket.player.name
+                  : "Player";
+                let chatMessage = playerName + " says: " + message;
+                sockets.broadcast(chatMessage);
+                util.log("[CHAT] " + chatMessage);
+                // Basic chat spam control.
+                socket.status.lastChatTime = util.time();
+              } else
+                player.body.sendMessage("You're sending messages too quickly!");
+            }
+            break;
                 case 'S': { // clock syncing
                     if (m.length !== 1) { socket.kick('Ill-sized sync packet.'); return 1; }
                     // Get data
